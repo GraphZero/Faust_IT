@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="form-style-8 ng-enter ng-enter-active center">
+    <h2>Here you can add a user group.</h2>
+    <form>
+        <div>
+            <input type="number" name="user-group-id" placeholder="User Group Id" ng-model="userGroupId"/>
+            <input type="text" name="group-name" placeholder="New Group Name" ng-model="newGroupName"/>
+            <a class="quick-center">
+                <input type="button" class="btn btn-primary" name="add-user-group" value="Add User Group" ng-click="addGroupName()"/>
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,32 +1,51 @@
 'use strict'
-
-var app = angular.module('home', ['ngRoute', 'ngAnimate', 'shared']);
+var app = angular.module('home', ['ngRoute', 'ngAnimate']);
 
 app.config(function($routeProvider) {
     $routeProvider
-        .when("/", {
-            templateUrl : "/app/components/login/loginPage.htm",
-            controller: 'HomeController'
+        .when("/manageUsers", {
+            templateUrl : "/app/users/users.htm",
+            controller: 'UsersController'
         })
-        .when("/profilePage", {
-            templateUrl : "/app/components/home/profilePage.htm",
-            controller: 'HomeController'
-        })
-        .when("/flights", {
-            templateUrl : "/app/components/flights/flights.htm",
-            controller: 'HomeController'
-        })
-        .when("/adminPage", {
-            templateUrl : "/app/components/adminPanel/adminPage.htm"
+        .when("/manageUsersGroups", {
+            templateUrl : "/app/groups/userGroups.htm",
+            controller: 'UserGroupController'
         })
         .when("/addUser", {
-            templateUrl : "/app/components/addUser/addUser.htm"
+            templateUrl : "/app/users/addUser.html",
+            controller: 'UsersController'
         })
-        .when("/addFlight", {
-            templateUrl : "/app/components/addFlight/addFlight.htm"
+        .when("/deleteUser", {
+            templateUrl : "/app/users/deleteUser.html",
+            controller: 'UsersController'
+        })
+        .when("/editUser", {
+            templateUrl : "/app/users/editUser.html",
+            controller: 'UsersController'
+        })
+        .when("/allUsers", {
+            templateUrl : "/app/users/listUsers.html",
+            controller: 'UsersController'
+        })
+        .when("/addUserGroup", {
+            templateUrl : "/app/groups/addUserGroup.html",
+            controller: 'UserGroupController'
+        })
+        .when("/deleteUserGroup", {
+            templateUrl : "/app/groups/deleteUserGroup.html",
+            controller: 'UserGroupController'
+        })
+        .when("/editUserGroup", {
+            templateUrl : "/app/groups/editUserGroup.html",
+            controller: 'UserGroupController'
+        })
+        .when("/listUsersGroups", {
+            templateUrl : "/app/groups/listUsersGroups.html",
+            controller: 'UserGroupController'
         })
         .otherwise({
-            template : "/app/components/login/loginPage.htm",
-            controller: 'HomeController'
+            templateUrl : "/app/home/main.htm",
+            controller: 'UserGroupController'
         });
+
 });

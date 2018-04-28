@@ -1,7 +1,6 @@
 
 body {
-    background-image: url("airplane-wallpaper1.jpg");
-    background-color: #cccccc;
+    background: #cccccc url("teal-pentagonal-background.png");
     background-size: cover;
 }
 

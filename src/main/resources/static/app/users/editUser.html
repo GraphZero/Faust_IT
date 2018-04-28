@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+<div class="form-style-8 ng-enter ng-enter-active center">
+    <h2>Here you can edi a user.</h2>
+    <form>
+        <div>
+            <input type="number" name="age" placeholder="Id" ng-model="userId"/>
+            <input type="text" name="username" placeholder="New Username" ng-model="newUsername"/>
+            <input type="password" name="password" placeholder="New Password" ng-model="newPassword"/>
+            <input type="text" name="first-name" placeholder="New First Name" ng-model="newFirstName" />
+            <input type="text" name="second-name" placeholder="Second Name" ng-model="newSecondName"/>
+            <input type="date" name="date" placeholder="New Birth Date" ng-model="newBirthDate" />
+            <a class="quick-center">
+                <input type="button" class="btn btn-primary" name="add-user" value="Edit User" ng-click="addUser()"/>
+            </a>
+        </div>
+    </form>
+</div>

@@ -1,4 +1,5 @@
-angular.module('home').controller('UsersController', function($scope, $http, $location, $window, $q, $timeout){
+'use strict'
+angular.module('home').controller('UserGroupController', function($scope, $http, $location, $window, $q, $timeout){
 
     $scope.addUser = function() {
         var absUrl = "/createUser";
@@ -21,7 +22,6 @@ angular.module('home').controller('UsersController', function($scope, $http, $lo
                     $location.path('/');
                 },
                 function (response) {
-                    console.log(response)
                     console.log("Couldnt add user." + response);
                 });
     }

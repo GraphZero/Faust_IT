@@ -73,10 +73,10 @@
     border-radius:0;
     font-size: 18px;
     position:relative;
-    width: 150px;
+    width: 300px;
 }
 
-#t{
+.quick-center{
     padding-top: 10px;
     margin-left: 70px;
 }
