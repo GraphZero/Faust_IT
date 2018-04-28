@@ -5,10 +5,7 @@ import com.faust.intership.users.domain.dto.UserGroupsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,14 +14,14 @@ import java.util.List;
 public class UsersGroupController {
     private final UserGroupsService userGroupsService;
 
-    @RequestMapping(path = "/createUserGroup", method = RequestMethod.POST)
+    @RequestMapping(path = "/createUserGroup/{groupName}", method = RequestMethod.POST)
     public ResponseEntity<String> createUserGroup( @PathVariable final String groupName){
         userGroupsService.addUsersGroup(groupName);
         return ResponseEntity.ok("Created user group");
 
     }
 
-    @RequestMapping(path = "/deleteUserGroup", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/deleteUserGroup/{groupId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteUserGroup(@PathVariable final long groupId){
         if ( userGroupsService.deleteUsersGroup(groupId)){
             return ResponseEntity.ok("Deleted user group");
@@ -39,7 +36,7 @@ public class UsersGroupController {
     }
 
     @RequestMapping(path = "/updateNameOfUserGroup", method = RequestMethod.PATCH)
-    public ResponseEntity<String> updateUserGroup(@PathVariable final long userGroupId, @PathVariable final String newUserGroupName){
+    public ResponseEntity<String> updateUserGroup(@RequestParam final long userGroupId, @RequestParam final String newUserGroupName){
         if ( userGroupsService.editUserGroupName(userGroupId, newUserGroupName)){
             return ResponseEntity.ok("Changed name of the user group.");
         } else{
@@ -48,7 +45,7 @@ public class UsersGroupController {
     }
 
     @RequestMapping(path = "/addUserToUserGroup", method = RequestMethod.POST)
-    public ResponseEntity<String> addUserToUserGroup(@PathVariable final long userGroupId, @PathVariable final long userId){
+    public ResponseEntity<String> addUserToUserGroup(@RequestParam final long userGroupId, @RequestParam final long userId){
         if ( userGroupsService.addUserToGroup(userGroupId, userId)){
             return ResponseEntity.ok("Successfully added user to group.");
         } else{
@@ -57,7 +54,7 @@ public class UsersGroupController {
     }
 
     @RequestMapping(path = "/deleteUserFromUserGroup", method = RequestMethod.POST)
-    public ResponseEntity<String> deleteUserFromUserGroup(@PathVariable final long userGroupId, @PathVariable final long userId){
+    public ResponseEntity<String> deleteUserFromUserGroup(@RequestParam final long userGroupId, @RequestParam final long userId){
         if ( userGroupsService.deleteUserFromGroup(userGroupId, userId)){
             return ResponseEntity.ok("Successfully deleted user from group.");
         } else{

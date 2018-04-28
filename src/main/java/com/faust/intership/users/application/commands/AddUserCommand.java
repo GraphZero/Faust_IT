@@ -1,14 +1,18 @@
 package com.faust.intership.users.application.commands;
 
-import lombok.Value;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Value
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class AddUserCommand {
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String secondName;
-    private LocalDate birthdate;
+    private LocalDate birthDate;
 }

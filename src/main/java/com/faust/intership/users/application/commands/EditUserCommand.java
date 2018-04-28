@@ -1,10 +1,14 @@
 package com.faust.intership.users.application.commands;
 
-import lombok.Value;
+import lombok.*;
 
 import java.time.LocalDate;
 
-@Value
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class EditUserCommand {
     private long id;
     private String newUserName;

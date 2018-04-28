@@ -26,11 +26,11 @@ public class UsersCrudService {
             User userEntity =
                     User
                             .builder()
-                            .userName(addUserCommand.getUserName())
+                            .username(addUserCommand.getUsername())
                             .password(addUserCommand.getPassword())
                             .firstName(addUserCommand.getFirstName())
                             .secondName(addUserCommand.getSecondName())
-                            .birthdate(addUserCommand.getBirthdate())
+                            .birthdate(addUserCommand.getBirthDate())
                             .build();
             userRepository.save(userEntity);
             log.info("Successfully saved user.");
@@ -93,7 +93,7 @@ public class UsersCrudService {
                 editUserCommand.getNewBirthdate());
 
         if (userValidator.validateInitialUserData(tempUserCommand)) {
-            userToEdit.setUserName(editUserCommand.getNewUserName());
+            userToEdit.setUsername(editUserCommand.getNewUserName());
             userToEdit.setPassword(editUserCommand.getNewPassword());
             userToEdit.setFirstName(editUserCommand.getNewFirstName());
             userToEdit.setSecondName(editUserCommand.getNewSecondName());

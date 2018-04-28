@@ -10,11 +10,13 @@ public class UserValidator implements IUserValidator {
 
     @Override
     public boolean validateInitialUserData(AddUserCommand addUserCommand) {
+        if ( addUserCommand.getUsername() == null ||
+                addUserCommand.getPassword() == null ||
+                addUserCommand.getFirstName() == null ||
+                addUserCommand.getSecondName() == null) return false;
         return
-                addUserCommand.getUserName().length() < 30 &&
-                addUserCommand.getPassword().length() > 8 && addUserCommand.getPassword().matches("[0-9]") &&
-                !addUserCommand.getFirstName().matches("[0-9]") &&
-                !addUserCommand.getSecondName().matches("[0-9]") &&
-                addUserCommand.getBirthdate().isAfter(LocalDate.of(1900, 0, 1));
+                addUserCommand.getUsername().length() < 30 &&
+                addUserCommand.getPassword().length() > 8  &&
+                addUserCommand.getBirthDate().isAfter(LocalDate.of(1900, 1, 1));
     }
 }

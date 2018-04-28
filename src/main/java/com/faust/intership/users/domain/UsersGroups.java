@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
+@Table(name = "Users_Groups")
 public class UsersGroups extends AbstractEntity{
     private String name;
 

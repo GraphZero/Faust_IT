@@ -22,6 +22,7 @@ public class UsersController {
 
     @RequestMapping(path = "/createUser", method = RequestMethod.POST)
     public ResponseEntity<String> createUser(@RequestBody final AddUserCommand addUserCommand){
+        System.out.println(addUserCommand);
         if ( usersCrudService.addUser(addUserCommand)){
             return ResponseEntity.ok("Created user");
         } else{

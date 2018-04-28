@@ -18,8 +18,9 @@ import java.util.stream.Collectors;
 @Setter
 @AllArgsConstructor
 @Entity
+@Table(name = "Users")
 public class User extends AbstractEntity {
-    private String userName;
+    private String username;
     private String password;
     private String firstName;
     private String secondName;
@@ -29,18 +30,18 @@ public class User extends AbstractEntity {
      * User can have many groups, just as groups can have many users.
      */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_user_list",
+    @JoinTable(name = "User_User_Group",
             joinColumns = {
                     @JoinColumn(name = "user_id")
             },
             inverseJoinColumns = {
-                    @JoinColumn(name = "user_list_id")
+                    @JoinColumn(name = "user_group_id")
             })
     private Set<UsersGroups> userGroups;
 
     public UserDto dto(){
         return UserDto.builder()
-                .userName(userName)
+                .userName(username)
                 .password(password)
                 .firstName(firstName)
                 .secondName(secondName)
@@ -59,13 +60,13 @@ public class User extends AbstractEntity {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return Objects.equals(userName, user.userName) &&
+        return Objects.equals(username, user.username) &&
                 Objects.equals(getId(), id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userName, id);
+        return Objects.hash(username, id);
     }
 
 }
