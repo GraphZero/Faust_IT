@@ -3,6 +3,7 @@ package com.faust.intership.users.domain;
 import com.faust.intership.common.infastructure.AbstractEntity;
 import com.faust.intership.users.domain.dto.UserGroupsDto;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "Users_Groups")
 public class UsersGroups extends AbstractEntity{
     private String name;

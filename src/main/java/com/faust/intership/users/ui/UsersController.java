@@ -20,22 +20,22 @@ import java.util.List;
 public class UsersController {
     private final UsersCrudService usersCrudService;
 
-    @RequestMapping(path = "/createUser", method = RequestMethod.POST)
+    @RequestMapping(path = "/createUser", method = RequestMethod.POST, produces = "application/json")
     public ResponseEntity<String> createUser(@RequestBody final AddUserCommand addUserCommand){
         System.out.println(addUserCommand);
         if ( usersCrudService.addUser(addUserCommand)){
-            return ResponseEntity.ok("Created user");
+            return ResponseEntity.ok("\"Created user\"");
         } else{
-            return new ResponseEntity<>("Couldn't add user account.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"Couldn't add user account.\"", HttpStatus.CONFLICT);
         }
     }
 
-    @RequestMapping(path = "/deleteUser", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/deleteUser", method = RequestMethod.POST)
     public ResponseEntity<String> deleteUser(@RequestBody final DeleteUserCommand deleteUserCommand){
         if ( usersCrudService.deleteUser(deleteUserCommand)){
-            return ResponseEntity.ok("Deleted user");
+            return ResponseEntity.ok("\"Deleted user\"");
         } else{
-            return new ResponseEntity<>("User account doesn't exist.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"User account doesn't exist.\"", HttpStatus.CONFLICT);
         }
     }
 
@@ -47,9 +47,9 @@ public class UsersController {
     @RequestMapping(path = "/updateUser", method = RequestMethod.PATCH)
     public ResponseEntity<String> updateUser(@RequestBody final EditUserCommand editUserCommand){
         if ( usersCrudService.editUser(editUserCommand)){
-            return ResponseEntity.ok("Edited user");
+            return ResponseEntity.ok("\"Edited user\"");
         } else{
-            return new ResponseEntity<>("Couldn't edit user account.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"Couldn't edit user account.\"", HttpStatus.CONFLICT);
         }
     }
 

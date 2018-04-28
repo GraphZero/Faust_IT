@@ -2,10 +2,7 @@ package com.faust.intership.users.domain;
 
 import com.faust.intership.common.infastructure.AbstractEntity;
 import com.faust.intership.users.domain.dto.UserDto;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +14,7 @@ import java.util.stream.Collectors;
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "Users")
 public class User extends AbstractEntity {

@@ -17,16 +17,16 @@ public class UsersGroupController {
     @RequestMapping(path = "/createUserGroup/{groupName}", method = RequestMethod.POST)
     public ResponseEntity<String> createUserGroup( @PathVariable final String groupName){
         userGroupsService.addUsersGroup(groupName);
-        return ResponseEntity.ok("Created user group");
+        return ResponseEntity.ok("\"Created user group\"");
 
     }
 
     @RequestMapping(path = "/deleteUserGroup/{groupId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteUserGroup(@PathVariable final long groupId){
         if ( userGroupsService.deleteUsersGroup(groupId)){
-            return ResponseEntity.ok("Deleted user group");
+            return ResponseEntity.ok("\"Deleted user group\"");
         } else{
-            return new ResponseEntity<>("User group account doesn't exist.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"User group account doesn't exist.\"", HttpStatus.CONFLICT);
         }
     }
 
@@ -38,27 +38,27 @@ public class UsersGroupController {
     @RequestMapping(path = "/updateNameOfUserGroup", method = RequestMethod.PATCH)
     public ResponseEntity<String> updateUserGroup(@RequestParam final long userGroupId, @RequestParam final String newUserGroupName){
         if ( userGroupsService.editUserGroupName(userGroupId, newUserGroupName)){
-            return ResponseEntity.ok("Changed name of the user group.");
+            return ResponseEntity.ok("\"Changed name of the user group.\"");
         } else{
-            return new ResponseEntity<>("Couldn't edit user group.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"Couldn't edit user group.\"", HttpStatus.CONFLICT);
         }
     }
 
     @RequestMapping(path = "/addUserToUserGroup", method = RequestMethod.POST)
     public ResponseEntity<String> addUserToUserGroup(@RequestParam final long userGroupId, @RequestParam final long userId){
         if ( userGroupsService.addUserToGroup(userGroupId, userId)){
-            return ResponseEntity.ok("Successfully added user to group.");
+            return ResponseEntity.ok("\"Successfully added user to group.\"");
         } else{
-            return new ResponseEntity<>("Couldn't add user to group.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"Couldn't add user to group.\"", HttpStatus.CONFLICT);
         }
     }
 
     @RequestMapping(path = "/deleteUserFromUserGroup", method = RequestMethod.POST)
     public ResponseEntity<String> deleteUserFromUserGroup(@RequestParam final long userGroupId, @RequestParam final long userId){
         if ( userGroupsService.deleteUserFromGroup(userGroupId, userId)){
-            return ResponseEntity.ok("Successfully deleted user from group.");
+            return ResponseEntity.ok("\"Successfully deleted user from group.\"");
         } else{
-            return new ResponseEntity<>("Couldn't delete user from group.", HttpStatus.CONFLICT);
+            return new ResponseEntity<>("\"Couldn't delete user from group.\"", HttpStatus.CONFLICT);
         }
     }
 
