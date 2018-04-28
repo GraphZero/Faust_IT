@@ -4,7 +4,6 @@ import com.faust.intership.users.application.UsersCrudService;
 import com.faust.intership.users.application.commands.AddUserCommand;
 import com.faust.intership.users.application.commands.DeleteUserCommand;
 import com.faust.intership.users.application.commands.EditUserCommand;
-import com.faust.intership.users.domain.User;
 import com.faust.intership.users.domain.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -52,6 +51,5 @@ public class UsersController {
             return new ResponseEntity<>("Couldn't edit user account.", HttpStatus.CONFLICT);
         }
     }
-
 
 }

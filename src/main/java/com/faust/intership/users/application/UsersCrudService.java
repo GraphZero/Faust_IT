@@ -12,7 +12,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -22,8 +21,8 @@ public class UsersCrudService {
     private final IUserValidator userValidator;
     private final IUserRepository userRepository;
 
-    public boolean addUser(AddUserCommand addUserCommand){
-        if ( userValidator.validateInitialUserData(addUserCommand) ){
+    public boolean addUser(AddUserCommand addUserCommand) {
+        if (userValidator.validateInitialUserData(addUserCommand)) {
             User userEntity =
                     User
                             .builder()
@@ -36,7 +35,7 @@ public class UsersCrudService {
             userRepository.save(userEntity);
             log.info("Successfully saved user.");
             return true;
-        } else{
+        } else {
             log.warn("Couldn't save user.");
             return false;
         }
@@ -44,24 +43,25 @@ public class UsersCrudService {
 
     /**
      * Returns false if there is no such user.
+     *
      * @param deleteUserCommand
      * @return
      */
-    public boolean deleteUser(DeleteUserCommand deleteUserCommand){
+    public boolean deleteUser(DeleteUserCommand deleteUserCommand) {
         return userRepository
                 .findById(deleteUserCommand.getId())
-                .map( userToEdit -> {
+                .map(userToEdit -> {
                     userRepository.deleteById(userToEdit.getId());
                     log.info("Successfully deleted user.");
                     return true;
                 })
-                .orElseGet( () -> {
+                .orElseGet(() -> {
                     log.info("Couldn't delete non existing user.");
                     return false;
                 });
     }
 
-    public List<UserDto> findAllUsers(){
+    public List<UserDto> findAllUsers() {
         return userRepository
                 .findAll()
                 .stream()
@@ -69,22 +69,22 @@ public class UsersCrudService {
                 .collect(Collectors.toList());
     }
 
-    public boolean editUser(EditUserCommand editUserCommand){
+    public boolean editUser(EditUserCommand editUserCommand) {
         return userRepository
                 .findById(editUserCommand.getId())
-                .map( userToEdit -> {
-                        if ( editUserFields(userToEdit, editUserCommand) ){
-                            log.info("Successfully edited user with id: " + userToEdit.getId());
-                            return true;
-                        } else{
-                            return false;
+                .map(userToEdit -> {
+                            if (editUserFields(userToEdit, editUserCommand)) {
+                                log.info("Successfully edited user with id: " + userToEdit.getId());
+                                return true;
+                            } else {
+                                return false;
+                            }
                         }
-                    }
                 )
                 .orElse(false);
     }
 
-    private boolean editUserFields(User userToEdit, EditUserCommand editUserCommand){
+    private boolean editUserFields(User userToEdit, EditUserCommand editUserCommand) {
         AddUserCommand tempUserCommand = new AddUserCommand(
                 editUserCommand.getNewUserName(),
                 editUserCommand.getNewPassword(),
@@ -92,14 +92,14 @@ public class UsersCrudService {
                 editUserCommand.getNewSecondName(),
                 editUserCommand.getNewBirthdate());
 
-        if ( userValidator.validateInitialUserData(tempUserCommand)){
+        if (userValidator.validateInitialUserData(tempUserCommand)) {
             userToEdit.setUserName(editUserCommand.getNewUserName());
             userToEdit.setPassword(editUserCommand.getNewPassword());
             userToEdit.setFirstName(editUserCommand.getNewFirstName());
             userToEdit.setSecondName(editUserCommand.getNewSecondName());
             userToEdit.setBirthdate(editUserCommand.getNewBirthdate());
             return true;
-        } else{
+        } else {
             return false;
         }
 
